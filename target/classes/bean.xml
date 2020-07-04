@@ -6,17 +6,17 @@
 <!--    配置service-->
     <bean id="accountService" class="com.hr.service.impl.AccountServiceImpl">
         <property name="accountDao" ref="accountDao"></property>
+        <property name="txManager" ref="txManager"/>
     </bean>
 
 <!--    配置dao-->
     <bean id="accountDao" class="com.hr.dao.impl.AccountDaoImpl">
         <property name="runner" ref="runner"></property>
+        <property name="connectionUtils" ref="connectionUtils"/>
     </bean>
 
 <!--    配置QueryRunner-->
     <bean id="runner" class="org.apache.commons.dbutils.QueryRunner" scope="prototype">
-<!--        注入数据源-->
-        <constructor-arg name="ds" ref="dataSource"></constructor-arg>
     </bean>
 
 <!--    配置数据源-->
@@ -26,5 +26,17 @@
         <property name="user" value="root"></property>
         <property name="password" value="123456"></property>
     </bean>
+
+    <!--配置Connection的工具类,ConnectionUtils-->
+    <bean id="connectionUtils" class="com.hr.utils.ConnectionUtils">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+<!--    配置自定义的事务管理器-->
+    <bean id="txManager" class="com.hr.utils.TransactionManager">
+        <property name="connectionUtils" ref="connectionUtils"/>
+    </bean>
+
+
 
 </beans>

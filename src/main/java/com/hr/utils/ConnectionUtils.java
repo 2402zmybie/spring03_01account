@@ -17,6 +17,10 @@ public class ConnectionUtils {
         this.dataSource = dataSource;
     }
 
+    /**
+     * 获取当前线程上的连接
+     * @return
+     */
     public Connection getThreadConnection() {
         try {
             //先从ThreadLocal获取
@@ -32,6 +36,12 @@ public class ConnectionUtils {
         } catch (SQLException throwables) {
             throw new RuntimeException(throwables);
         }
+    }
 
+    /**
+     * 把连接和线程解绑
+     */
+    public void removeConnection() {
+        t1.remove();
     }
 }
