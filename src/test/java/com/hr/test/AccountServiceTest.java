@@ -11,12 +11,29 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = "classpath:bean.xml")
+//public class AccountServiceTest {
+//
+//    @Autowired
+//    @Qualifier("proxyAccountService")
+//    private IAccountService as;
+//
+//    @Test
+//    public void testTransfer() {
+//        as.transfer("aaa","bbb",100f);
+//    }
+//}
+
+
+/**
+ * 测试加上AOP的事务控制
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:bean.xml")
+@ContextConfiguration(locations = "classpath:bean_without_beanFactory.xml")
 public class AccountServiceTest {
 
     @Autowired
-    @Qualifier("proxyAccountService")
     private IAccountService as;
 
     @Test

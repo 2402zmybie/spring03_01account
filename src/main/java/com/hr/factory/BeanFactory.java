@@ -10,6 +10,7 @@ import java.lang.reflect.Proxy;
 
 /**
  * 用于创建Service的代理对象的工厂
+ * ,目的: 在不改变IAccountService代码的基础上, 对IAccountService的方法增强(加上事务)
  */
 public class BeanFactory {
 
