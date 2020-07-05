@@ -10,11 +10,6 @@ import java.util.List;
 public class AccountServiceImpl implements IAccountService {
 
     private IAccountDao accountDao;
-    private TransactionManager txManager;
-
-    public void setTxManager(TransactionManager txManager) {
-        this.txManager = txManager;
-    }
 
     public void setAccountDao(IAccountDao accountDao) {
         this.accountDao = accountDao;
@@ -58,7 +53,7 @@ public class AccountServiceImpl implements IAccountService {
         target.setMoney(target.getMoney() + money);
         //更新转出账户
         accountDao.updateAccount(source);
-        int i = 1 / 0;
+//        int i = 1 / 0;
         //更新转入账户
         accountDao.updateAccount(target);
 

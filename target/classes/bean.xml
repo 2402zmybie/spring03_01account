@@ -3,10 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--配置代理的service-->
+    <bean id="proxyAccountService" factory-bean="beanFactory" factory-method="getAccountService"></bean>
+
+    <!--配置生产IAccountService代理对象的BeanFactory-->
+    <bean id="beanFactory" class="com.hr.factory.BeanFactory">
+        <property name="txManager" ref="txManager"></property>
+        <property name="accountService" ref="accountService"></property>
+    </bean>
+
 <!--    配置service-->
     <bean id="accountService" class="com.hr.service.impl.AccountServiceImpl">
         <property name="accountDao" ref="accountDao"></property>
-        <property name="txManager" ref="txManager"/>
     </bean>
 
 <!--    配置dao-->
